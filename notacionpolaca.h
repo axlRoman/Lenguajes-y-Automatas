@@ -19,6 +19,8 @@ public:
     //QString ConvertiraNotacionPostfijaQString(string Expinfija);
     char * ConvertiraNotacionPostfija(string Expinfija);
     Simbolo tipoYPrecedenacia(char c);
+    double solucionarExpresionPostfija (string expPos);
+    bool expresionNumerica (string expresion);
 };
 
 #endif // NOTACIONPOLACA_H

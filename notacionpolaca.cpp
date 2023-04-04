@@ -1,4 +1,5 @@
 #include "notacionpolaca.h"
+#include <cmath>
 #include <string.h>
 
 
@@ -278,3 +279,56 @@ Simbolo notacionpolaca::tipoYPrecedenacia(char c)
     }
     return simbolo;
 }
+
+double notacionpolaca::solucionarExpresionPostfija(string expPos)
+{
+    Pila<double> *stack = new Pila<double>(expPos.size());
+
+    for(char elemento : expPos){
+        if(isdigit(elemento))
+            stack->push(elemento - '0');
+        else
+        {
+            double operando2 = stack->pop();
+            double operando1 = stack->pop();
+
+            double resultado;
+
+            switch (elemento) {
+            case '+':
+                resultado = operando1 + operando2;
+                break;
+            case '-':
+                resultado = operando1 - operando2;
+                break;
+            case '*':
+                resultado = operando1 * operando2;
+                break;
+            case '/':
+                resultado = operando1 / operando2;
+                break;
+            case '^':
+                resultado = pow(operando1, operando2);
+                break;
+            }
+            stack->push(resultado);
+        }
+    }
+    return stack->pop();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
